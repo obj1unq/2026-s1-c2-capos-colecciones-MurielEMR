@@ -1,0 +1,8 @@
+import artefactos.*
+import capos.*
+
+describe "Los Artefactos"{
+    test "Recolectando artefactos"{
+        
+    }
+}
