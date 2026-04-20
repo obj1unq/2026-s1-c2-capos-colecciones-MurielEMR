@@ -1,11 +1,24 @@
 import artefactos.*
 import lugares.*
 object rolando {
+    var poderDePelea = 0
     const mochila = []
     var capacidad = 2
     var hogar = castillo
     const historialEncuentros = []
 
+    method usarArtefacto(artefacto){
+        artefacto.usarArtefacto()
+    }
+    method poderDePelea(_poderDePelea){
+        poderDePelea = _poderDePelea
+    }
+    method poderDePelea(){
+        return poderDePelea
+    }
+    method poderDePeleaTotal(){
+        return self.poderDePelea() + poderArtefactos()
+    }
     method hogar(){
         return hogar
     }
