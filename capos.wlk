@@ -3,6 +3,18 @@ import lugares.*
 object rolando {
     const mochila = []
     var capacidad = 2
+    var hogar = castillo
+    const historialEncuentros = []
+
+    method hogar(){
+        return hogar
+    }
+    method hogar(_hogar){
+        hogar = _hogar
+    }
+    method historialEncuentro(){
+        return historialEncuentros
+    }
 
     method capacidad(){
         return capacidad
@@ -13,24 +25,25 @@ object rolando {
 
     method agregarAMochila(artefacto){
 
-        self.verificarMochila() 
-        mochila.add(artefacto)
-        
-    }
-    method verificarMochila(){
-        if (mochila.size() >= self.capacidad()){
-         self.error("Maximo de 2 por mochila chiki")
+        historialEncuentros.add(artefacto)
+        if(not (mochila.size() >= self.capacidad() || (self.tieneArtefacto(artefacto)))){
+            mochila.add(artefacto)
         }
     }
-    method irAlCastillo(){
-        castillo.depositarArtefactos(mochila)
+    method llegarA(){
+        hogar.depositarArtefactos(mochila)
         mochila.clear()
     }
 
     method todosSusArtefactos(){
-        return mochila ++ castillo.inventario()
+        return mochila + hogar.inventario()
     }
-    method tieneArtefactoLlamado(nombre){
-        mochila.any({artefacto => artefacto.nombre()==nombre})
+    method tieneArtefacto(artefacto){
+        return self.todosSusArtefactos().contains(artefacto)
     }
+
 }
+
+
+
+
