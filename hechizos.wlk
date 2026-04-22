@@ -3,21 +3,21 @@ import capos.*
 import lugares.*
 
 object bendicion {
-    method poderAporte(){
+    method poderAPersonaje(personaje){
         return 4
     }
 }
 
 object invisibilidad {
-    method poderAporte(){
-        return 1
-
+    method poderAPersonaje(personaje){
+        return personaje.poderBase()
     }
+
 
 }
 
 object invocacion {
-    method poderAporte(personaje){
-
+    method poderAPersonaje(personaje){
+        return personaje.artefactoMasPoderosoDeSuMorada()
     }
 }
