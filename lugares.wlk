@@ -1,5 +1,6 @@
 import capos.*
 import artefactos.*
+import hechizos.*
 
 object castillo{
     const inventario =[]

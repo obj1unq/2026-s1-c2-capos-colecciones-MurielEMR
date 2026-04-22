@@ -1,23 +1,34 @@
 import artefactos.*
 import lugares.*
+import hechizos.*
 object rolando {
-    var poderDePelea = 0
-    const mochila = []
+    var poderBase = 5
+    const artefactos = []
     var capacidad = 2
     var hogar = castillo
     const historialEncuentros = []
 
+    method batallar(){
+        artefactos.forEach({artefacto=>artefacto.usar()})
+        self.poderBase(poderBase+1)
+    }
     method usarArtefacto(artefacto){
-        artefacto.usarArtefacto()
+        if (self.tieneArtefacto(artefacto)){
+            artefacto.usar()
+        }
     }
-    method poderDePelea(_poderDePelea){
-        poderDePelea = _poderDePelea
+    method poderBase(_poderBase){
+        poderBase = _poderBase
     }
-    method poderDePelea(){
-        return poderDePelea
+    method poderBase(){
+        return poderBase
     }
     method poderDePeleaTotal(){
-        return self.poderDePelea() + poderArtefactos()
+        return self.poderBase() + self.poderArtefactos()
+    }
+    method poderArtefactos(){
+        return artefactos.sum({ artefacto => artefacto.poder() })
+
     }
     method hogar(){
         return hogar
@@ -36,20 +47,21 @@ object rolando {
         capacidad= capacidad + 1
     }
 
-    method agregarAMochila(artefacto){
+    method agregarArtefacto(artefacto){
 
         historialEncuentros.add(artefacto)
-        if(not (mochila.size() >= self.capacidad() || (self.tieneArtefacto(artefacto)))){
-            mochila.add(artefacto)
+        if(not (artefactos.size() >= self.capacidad() || (self.tieneArtefacto(artefacto)))){
+            artefactos.add(artefacto)
+            artefacto.dueño(self)
         }
     }
     method llegarA(){
-        hogar.depositarArtefactos(mochila)
-        mochila.clear()
+        hogar.depositarArtefactos(artefactos)
+        artefactos.clear()
     }
 
     method todosSusArtefactos(){
-        return mochila + hogar.inventario()
+        return artefactos + hogar.inventario()
     }
     method tieneArtefacto(artefacto){
         return self.todosSusArtefactos().contains(artefacto)
