@@ -14,6 +14,13 @@ object rolando {
 quiero las moradas que pueda vencer al dueño
 quiero que me devuelva las moradas
 */
+    method tieneArtefactoFatal(enemigo){
+        return artefactos.any({artefacto => self.esArtefactoFatal(artefacto,enemigo)})
+    }
+    
+    method esArtefactoFatal(artefacto,enemigo){
+        return artefacto.poder() > enemigo.poder()
+    }
     method esPoderoso(){
         return enemigos.all({e => self.puedeVencerEnemigo(e)})
     }

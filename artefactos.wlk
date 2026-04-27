@@ -36,7 +36,11 @@ object libro{
         }
     }
     method poder(){
-        return hechizos.first().poderAPersonaje(dueño)
+        if (hechizos.notEmpty()){
+            return hechizos.first().poderAPersonaje(dueño)
+        } else {
+            return dueño.poder()
+        }
     }
 
     method agregarHechizo(hechizo){
@@ -45,14 +49,9 @@ object libro{
         }
     }
     method esArtefactoFatalPara(enemigo){
-         method esArtefactoFatalPara(enemigo){
         return self.poder() > enemigo.poder()
 
-
     }
-
-    }
-
 
 }
 object collar{
